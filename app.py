@@ -52,23 +52,4 @@ def book_seat():
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-from flask_mail import Mail, Message
-
-# Configure Flask-Mail
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'your-email@gmail.com'
-app.config['MAIL_PASSWORD'] = 'your-email-password'
-mail = Mail(app)
-
-# Function to send confirmation email
-def send_confirmation_email(email, seat_number):
-    msg = Message('Library Seat Booking Confirmation',
-                  sender='your-email@gmail.com',
-                  recipients=[email])
-    msg.body = f'Your seat {seat_number} has been successfully booked!'
-    mail.send(msg)
+    
