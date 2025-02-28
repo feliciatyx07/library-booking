@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Seat Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Library Seat Booking</h1>
+    <div>
+        {% for seat in seats %}
+            <div class="seat {{ 'booked' if seat.status == 'Booked' else 'available' }}">
+                Seat {{ seat.number }} - {{ seat.status }}
+                {% if seat.status == 'Available' %}
+                    <a href="{{ url_for('book_seat', seat_id=seat.number) }}">Book</a>
+                {% else %}
+                    <a href="{{ url_for('cancel_booking', seat_id=seat.number) }}">Cancel</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+    <a href="{{ url_for('book_seat') }}">Book a New Seat</a>
+</body>
+</html>
